@@ -38,8 +38,18 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-socket-io'
   ],
+
+  io: {
+    sockets: [ // Required
+      { // At least one entry is required
+        name: 'home',
+        url: process.env.VUE_APP_SOCKET_URL
+      }
+    ]
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
