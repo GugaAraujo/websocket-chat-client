@@ -2,7 +2,8 @@ import { MutationTree } from 'vuex/types/index'
 
 export interface User {
     name: string | null;
-    color: string;
+  color: string;
+  avatar?: string | null
 }
 
 export enum Mutations {
