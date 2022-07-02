@@ -11,9 +11,9 @@ The [other repository](https://github.com/GugaAraujo/websocket-chat-project) wil
 
 * Initial socket server connection test ✅
 * Migrate socket functions to Vuex ◻️
-* Migrate scripts to TypeScript ◻️
+* Migrate scripts to TypeScript ✅
 * Create Chat, Messages and Menu components ◻️
-* Create User and Message Class ◻️
+* Create User and Message Interfaces ✅
 * Implement tests with Jest ◻️
 
 ## Build Setup

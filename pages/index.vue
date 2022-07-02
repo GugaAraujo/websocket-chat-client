@@ -20,21 +20,21 @@
   </div>
 </template>
 
-<script lang="js">
-import Vue from 'vue'
+<script lang="ts">
+import { defineComponent } from '@vue/composition-api'
+import type { NuxtSocket } from 'nuxt-socket-io'
+import { mapState } from 'vuex'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'IndexPage',
   data () {
     return {
+      socket: null as NuxtSocket | null,
       textToSend: null,
-      chatRoomMessages: [],
-      user: {
-        name: 'Tester',
-        color: '#5183F5'
-      }
+      chatRoomMessages: [] as any
     }
   },
+  computed: mapState(['user']),
   mounted () {
     this.socket = this.$nuxtSocket({
       name: 'home',
@@ -42,19 +42,23 @@ export default Vue.extend({
       reconnection: false
     })
     this.enterToChatRoom()
-    this.socket.on('entering', (welcomeMessage) => {
+    this.socket.on('entering', (welcomeMessage: any) => {
       this.chatRoomMessages.push(welcomeMessage)
     })
-    this.socket.on('receivedMessage', (message) => {
+    this.socket.on('receivedMessage', (message: any) => {
       this.chatRoomMessages.push(message)
     })
   },
   methods: {
-    sendText () {
-      this.socket.emit('sendMessage', { name: this.user.name, message: this.textToSend, color: this.user.color })
+    sendText () : void {
+      if (this.socket) {
+        this.socket.emit('sendMessage', { name: this.user.name, message: this.textToSend, color: this.user.color })
+      }
     },
-    enterToChatRoom () {
-      this.socket.emit('enteredUser', { name: this.user.name, color: this.user.color })
+    enterToChatRoom () : void {
+      if (this.socket) {
+        this.socket.emit('enteredUser', { name: this.user.name, color: this.user.color })
+      }
     }
   }
 })
