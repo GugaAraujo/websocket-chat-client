@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Websocket-chat-project</h1>
+    <NavBar :user="user" />
     <input
       v-model="textToSend"
       type="text"
@@ -24,12 +24,12 @@
 import { defineComponent } from '@vue/composition-api'
 import type { NuxtSocket } from 'nuxt-socket-io'
 import { mapState } from 'vuex'
-import Avatar from '@/components/Avatar.vue'
+import NavBar from '@/components/NavBar.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    Avatar
+    NavBar
   },
   data () {
     return {

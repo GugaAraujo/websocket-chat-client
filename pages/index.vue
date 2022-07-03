@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-screen bg-gradient-to-t from-green-500 to-blue-500">
     <Home v-if="user.name" />
     <Login v-else />
   </div>

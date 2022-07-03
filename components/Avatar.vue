@@ -1,5 +1,5 @@
 <template>
-  <img class="w-16 rounded-full" :src="user.avatar || defaultImage" @error="$event.target.src=defaultImage">
+  <img class="w-16 rounded-full" :src="(user || {}).avatar ? user.avatar : defaultImage" @error="$event.target.src=defaultImage">
 </template>
 
 <script lang="ts">
@@ -14,7 +14,7 @@ export default defineComponent({
   },
   data () {
     return {
-      defaultImage: `https://robohash.org/${this.user.name}.png`
+      defaultImage: `https://robohash.org/${(this.user || {}).name || 'default'}.png`
     }
   }
 })
