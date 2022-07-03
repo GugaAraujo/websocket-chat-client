@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Websocket-chat-project</h1>
-    <img class="max-w-xs" :src="user.avatar" @error="$event.target.src=`https://robohash.org/${user.name}.png`">
     <input
       v-model="textToSend"
       type="text"
@@ -25,9 +24,13 @@
 import { defineComponent } from '@vue/composition-api'
 import type { NuxtSocket } from 'nuxt-socket-io'
 import { mapState } from 'vuex'
+import Avatar from '@/components/Avatar.vue'
 
 export default defineComponent({
   name: 'Home',
+  components: {
+    Avatar
+  },
   data () {
     return {
       socket: null as NuxtSocket | null,
