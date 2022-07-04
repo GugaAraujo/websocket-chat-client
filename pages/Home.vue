@@ -25,6 +25,7 @@ export default defineComponent({
     return {
       socket: null as NuxtSocket | null,
       textToSend: null,
+      scoreBoard: [] as any,
       chatRoomMessages: [] as any
     }
   },
@@ -38,6 +39,25 @@ export default defineComponent({
     this.enterToChatRoom()
     this.socket.on('entering', (welcomeMessage: any) => {
       this.chatRoomMessages.push(welcomeMessage)
+    })
+    this.socket.on('scoreboard', (scoreboard: any) => {
+      this.scoreBoard.push(scoreboard)
+    })
+    this.socket.on('alert_newUser', (newUser: any) => {
+      newUser.alert = 'newUser'
+      this.chatRoomMessages.push(newUser)
+    })
+    this.socket.on('outgoingUser', (outgoingUser: any) => {
+      outgoingUser.alert = 'outgoingUser'
+      this.chatRoomMessages.push(outgoingUser)
+    })
+    this.socket.on('historyRemovalAlert', (historyRemovalAlert: any) => {
+      this.chatRoomMessages.push(historyRemovalAlert)
+    })
+    this.socket.on('PreviousMessages', (messages: Array<any>) => {
+      messages.forEach((message) => {
+        this.chatRoomMessages.push(message)
+      })
     })
     this.socket.on('receivedMessage', (message: any) => {
       this.chatRoomMessages.push(message)
