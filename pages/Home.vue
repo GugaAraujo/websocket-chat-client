@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavBar :user="user" />
+    <ToolBar :user="user" :scoreboard="scoreBoard" />
     <Chat :all-messages="chatRoomMessages" />
     <Writer @onClickSendText="sendText" />
   </div>
@@ -13,13 +14,15 @@ import { mapState } from 'vuex'
 import NavBar from '@/components/NavBar.vue'
 import Chat from '@/components/Chat.vue'
 import Writer from '@/components/Writer.vue'
+import ToolBar from '~/components/ToolBar.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Chat,
     Writer,
-    NavBar
+    NavBar,
+    ToolBar
   },
   data () {
     return {

@@ -63,10 +63,12 @@ export default defineComponent({
 <style scoped lang="css">
   .avatar{
     position: relative;
+    bottom: 20px;
     right: 20px;
   }
   .my-avatar{
     position: relative;
     left: 20px;
+    bottom: 20px;
   }
 </style>
