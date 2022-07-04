@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="message.name" class="mb-4 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg w-3/5 text-left flex flex-row border-2 border-green-400">
-      <Avatar class="avatar bg-white" :user="message" />
+    <div v-if="message.name && !message.belongsToThisClient" class="mb-6 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl w-3/5 text-left flex flex-row">
+      <Avatar class="avatar bg-white border-none shadow-2xl" :user="message" />
       <div>
         <span class="ml-2 text-gray-500 text-xs">
           {{ message.time.split(' ')[0] }} -
@@ -9,10 +9,26 @@
         <span class="font-medium" :style="`color: ${message.color}`">
           {{ message.name }}
         </span>
-        : {{ message.message }}
+        <p class="ml-2 mt-2">
+          {{ message.message }}
+        </p>
       </div>
     </div>
-    <div v-else class="mb-4 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg m-auto w-2/5 text-center">
+    <div v-else-if="message.belongsToThisClient" class="mb-6 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl w-3/5 text-left ml-auto flex flex-row-reverse justify-between">
+      <Avatar class="my-avatar bg-white border-none shadow-2xl" :user="message" />
+      <div>
+        <span class="ml-2 text-gray-500 text-xs">
+          {{ message.time.split(' ')[0] }} -
+        </span>
+        <span class="font-medium" :style="`color: ${message.color}`">
+          {{ message.name }}
+        </span>
+        <p class="ml-2 mt-2">
+          {{ message.message }}
+        </p>
+      </div>
+    </div>
+    <div v-else class="mt-2 mb-8 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl m-auto w-2/5 text-center">
       {{ message }}
     </div>
   </div>
@@ -36,5 +52,9 @@ export default defineComponent({
   .avatar{
     position: relative;
     right: 20px;
+  }
+  .my-avatar{
+    position: relative;
+    left: 20px;
   }
 </style>

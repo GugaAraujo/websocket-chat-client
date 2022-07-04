@@ -46,7 +46,17 @@ export default defineComponent({
   methods: {
     sendText (text: string) : void {
       if (this.socket) {
-        this.socket.emit('sendMessage', { name: this.user.name, message: text, color: this.user.color })
+        const message = {
+          time: new Date().toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+          name: this.user.name,
+          avatar: this.user.avatar,
+          message: text,
+          color: this.user.color,
+          belongsToThisClient: false
+        }
+        this.socket.emit('sendMessage', message)
+        message.belongsToThisClient = true
+        this.chatRoomMessages.push(message)
       }
     },
     enterToChatRoom () : void {
