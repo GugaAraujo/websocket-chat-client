@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="message.name && !message.belongsToThisClient && !message.alert" class="mb-6 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl w-3/5 text-left flex flex-row">
+    <div v-if="message.name && !message.belongsToThisClient && !message.alert" class="mb-6 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl w-full lg:w-3/5 text-left flex flex-row">
       <Avatar class="avatar bg-white border-none shadow-2xl" :user="message" />
       <div>
         <span class="ml-2 text-gray-500 text-xs">
@@ -14,7 +14,7 @@
         </p>
       </div>
     </div>
-    <div v-else-if="message.belongsToThisClient" class="mb-6 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl w-3/5 text-left ml-auto flex flex-row-reverse justify-between">
+    <div v-else-if="message.belongsToThisClient" class="mb-6 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl w-full lg:w-3/5 text-left ml-auto flex flex-row-reverse justify-between">
       <Avatar class="my-avatar bg-white border-none shadow-2xl" :user="message" />
       <div>
         <span class="ml-2 text-gray-500 text-xs">
@@ -28,7 +28,7 @@
         </p>
       </div>
     </div>
-    <div v-else class="mt-2 mb-8 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl m-auto w-2/5 text-center">
+    <div v-else class="mt-2 mb-8 p-3 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl m-auto w-full lg:w-2/5 text-center">
       <span v-if="message.alert">
         <span class="font-medium" :style="`color: ${message.color}`"> {{ message.name }} </span>
         <span v-if="message.alert === 'newUser'">

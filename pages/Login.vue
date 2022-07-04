@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto py-10 shadow-lg w-1/4 flex justify-center bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg">
+  <div class="mx-auto py-10 shadow-lg w-4/5 lg:w-1/4 flex justify-center bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg">
     <form
       @submit.prevent="SET_USER(newUser)"
     >
