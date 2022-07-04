@@ -1,5 +1,5 @@
 <template>
-  <div class="m-auto my-6 shadow-lg w-4/5 h-18">
+  <div class="m-auto mb-16 shadow-lg w-4/5 h-12">
     <input
       ref="inputTextToSend"
       v-model="textToSend"

@@ -1,5 +1,5 @@
 <template>
-  <div ref="chatbox" class="chatbox m-auto my-4 p-4 shadow-lg w-4/5 h-96 lg:h-72 bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg overflow-y-scroll">
+  <div ref="chatbox" class="chatbox m-auto my-4 p-4 shadow-lg w-4/5 bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg overflow-y-scroll">
     <div v-for="message in allMessages" :key="message">
       <Message :message="message" />
     </div>

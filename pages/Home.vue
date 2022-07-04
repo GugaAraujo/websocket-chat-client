@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="flex flex-col h-screen">
     <NavBar :user="user" />
     <ToolBar :user="user" :scoreboard="scoreBoard" />
-    <Chat :all-messages="chatRoomMessages" />
+    <Chat class="flex-grow" :all-messages="chatRoomMessages" />
     <Writer @onClickSendText="sendText" />
+    <Footer />
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import NavBar from '@/components/NavBar.vue'
 import Chat from '@/components/Chat.vue'
 import Writer from '@/components/Writer.vue'
 import ToolBar from '~/components/ToolBar.vue'
+import Footer from '~/components/Footer.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -22,7 +24,8 @@ export default defineComponent({
     Chat,
     Writer,
     NavBar,
-    ToolBar
+    ToolBar,
+    Footer
   },
   data () {
     return {
