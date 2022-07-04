@@ -87,7 +87,7 @@ export default defineComponent({
     },
     enterToChatRoom () : void {
       if (this.socket) {
-        this.socket.emit('enteredUser', { name: this.user.name, color: this.user.color })
+        this.socket.emit('enteredUser', { name: this.user.name, color: this.user.color, avatar: this.user.avatar })
       }
     }
   }
