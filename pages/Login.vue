@@ -15,6 +15,7 @@
           v-model="newUser.name"
           type="text"
           name="name"
+          maxlength="15"
           class="rounded p-1 w-full font-medium text-center"
           placeholder="Nome"
         >
