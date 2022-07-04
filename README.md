@@ -1,6 +1,6 @@
 # websocket-chat-client
 
-A chat room using Nuxt, Vue 3, Vuex, Tailwind, TypeScript and websocket (Socket.io)
+A chat room using Nuxt, Vue, Vuex, Tailwind, TypeScript and Websocket (Socket.io)
 
 ## 🚧 Project in progress
 
@@ -11,9 +11,12 @@ The [other repository](https://github.com/GugaAraujo/websocket-chat-project) wil
 
 * Initial socket server connection test ✅
 * Migrate socket functions to Vuex ◻️
-* Migrate scripts to TypeScript ◻️
-* Create Chat, Messages and Menu components ◻️
-* Create User and Message Class ◻️
+* Migrate scripts to TypeScript ✅
+* Migrate to Vue 3 ◻️
+* Migrate to Nuxt 3 ◻️
+* Create Chat, Messages and Menu components ✅
+* Create User store in Vuex ✅
+* Create User and Message Interfaces ◻️
 * Implement tests with Jest ◻️
 
 ## Build Setup
