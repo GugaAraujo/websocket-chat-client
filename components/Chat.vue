@@ -20,6 +20,16 @@ export default defineComponent({
       type: Array,
       required: true
     }
+  },
+  watch: {
+    allMessages: {
+      async handler () {
+        const chatbox = this.$refs.chatBox as HTMLDivElement
+        await this.$nextTick()
+        chatbox.scrollTop = chatbox.scrollHeight
+      },
+      deep: true
+    }
   }
 })
 </script>
