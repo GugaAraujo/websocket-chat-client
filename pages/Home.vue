@@ -1,22 +1,8 @@
 <template>
   <div>
     <NavBar :user="user" />
-    <input
-      v-model="textToSend"
-      type="text"
-    >
-    <button @click="sendText">
-      Enviar
-    </button>
-    <div>
-      <ul>
-        <li v-for="phrase in chatRoomMessages" :key="phrase">
-          <p :style="`color: ${phrase.color || '#A2A2A5'}`">
-            {{ phrase.time }} {{ phrase.name ? `${phrase.name}: ` : '' }} {{ phrase.message || phrase }}
-          </p>
-        </li>
-      </ul>
-    </div>
+    <Chat :all-messages="chatRoomMessages" />
+    <Writer @onClickSendText="sendText" />
   </div>
 </template>
 
@@ -25,10 +11,14 @@ import { defineComponent } from '@vue/composition-api'
 import type { NuxtSocket } from 'nuxt-socket-io'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBar.vue'
+import Chat from '@/components/Chat.vue'
+import Writer from '@/components/Writer.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
+    Chat,
+    Writer,
     NavBar
   },
   data () {
@@ -54,9 +44,9 @@ export default defineComponent({
     })
   },
   methods: {
-    sendText () : void {
+    sendText (text: string) : void {
       if (this.socket) {
-        this.socket.emit('sendMessage', { name: this.user.name, message: this.textToSend, color: this.user.color })
+        this.socket.emit('sendMessage', { name: this.user.name, message: text, color: this.user.color })
       }
     },
     enterToChatRoom () : void {
