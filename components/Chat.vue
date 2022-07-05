@@ -1,12 +1,12 @@
 <template>
   <div ref="chatbox"
     class="chatbox m-auto my-4 p-4 shadow-lg w-4/5 bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg overflow-y-scroll">
-    <div v-if="allMessages.length">
+    <div v-if="allMessages.lengt">
       <div v-for="message in allMessages" :key="message">
         <Message :message="message" />
       </div>
     </div>
-    <div v-else class="m-auto w-full text-center">
+    <div v-else class="flex justify-center">
       <DotsLoader />
     </div>
   </div>
