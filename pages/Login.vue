@@ -7,7 +7,7 @@
         <logo />
       </div>
       <div class="mb-6 flex justify-center">
-        <Avatar :user="newUser" />
+        <Avatar :user="newUser" :bigger="true" />
       </div>
       <div class="mb-4">
         <input
