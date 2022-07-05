@@ -73,7 +73,7 @@ export default defineComponent({
     sendText (text: string) : void {
       if (this.socket) {
         const message = {
-          time: new Date().toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+          time: new Date(),
           name: this.user.name,
           avatar: this.user.avatar,
           message: text,

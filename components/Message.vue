@@ -4,7 +4,7 @@
       <Avatar class="avatar bg-white border-none shadow-2xl" :user="message" />
       <div class="messageFromOthers">
         <span class="text-gray-500 text-xs">
-          {{ message.time.split(' ')[0] }} -
+          {{ formatDate(message.time) }} -
         </span>
         <span class="font-medium" :style="`color: ${message.color}`">
           {{ message.name }}
@@ -18,7 +18,7 @@
       <Avatar class="my-avatar bg-white border-none shadow-2xl" :user="message" />
       <div>
         <span class="ml-2 text-gray-500 text-xs">
-          {{ message.time.split(' ')[0] }} -
+          {{ formatDate(message.time) }} -
         </span>
         <span class="font-medium" :style="`color: ${message.color}`">
           {{ message.name }}
@@ -60,6 +60,9 @@ export default defineComponent({
   methods: {
     isMessageFromOthers (): Boolean {
       return this.message.name && !this.message.belongsToThisClient && !this.message.alert
+    },
+    formatDate (dateString: string): string {
+      return new Date(dateString).toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' })
     }
   }
 })
