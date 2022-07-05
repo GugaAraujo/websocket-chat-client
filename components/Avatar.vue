@@ -1,5 +1,10 @@
 <template>
-  <img class="w-20 h-20 rounded-full border-2 border-white" :src="(user || {}).avatar ? user.avatar : defaultImage()" @error="$event.target.src=defaultImage()">
+  <img 
+    class="rounded-full border-2 border-white"
+    :class="bigger ? 'w-16 lg:w-20 h-16 lg:h-20' : 'w-12 lg:w-16 h-12 lg:h-16'"
+    :src="(user || {}).avatar ? user.avatar : defaultImage()" 
+    @error="$event.target.src=defaultImage()"
+  >
 </template>
 
 <script lang="ts">
@@ -10,6 +15,9 @@ export default defineComponent({
     user: {
       type: Object,
       required: true
+    },
+    bigger: {
+      type: Boolean
     }
   },
   methods: {

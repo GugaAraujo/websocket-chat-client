@@ -7,7 +7,7 @@
       class="form-textarea mt-1 p-3 block w-full h-full resize-none bg-white bg-opacity-50 backdrop-blur-xl rounded drop-shadow-lg focus:outline-none"
       @keyup.enter="onClickSendText"
     >
-    <button class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded" :class="textToSend === null || textToSend === '' ? 'opacity-50 cursor-not-allowed' : ''" @click="onClickSendText">
+    <button class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded" :disabled="hasNoMessageToSend()" :class="hasNoMessageToSend() ? 'opacity-50 cursor-not-allowed' : ''" @click="onClickSendText">
       Enviar
     </button>
   </div>
@@ -27,15 +27,18 @@ export default defineComponent({
     }
   },
   methods: {
-    onClickSendText () {
+    onClickSendText () : void {
       this.$emit('onClickSendText', this.textToSend)
       this.eraseText()
     },
-    eraseText () {
+    eraseText () : void {
       const input = this.$refs.inputTextToSend as HTMLInputElement
       input.value = ''
       input.focus()
       this.textToSend = null
+    },
+    hasNoMessageToSend() : Boolean {
+      return this.textToSend === null || this.textToSend === ''
     }
   }
 })
