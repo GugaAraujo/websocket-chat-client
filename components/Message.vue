@@ -53,12 +53,13 @@ export default defineComponent({
   name: 'Message',
   props: {
     message: {
-      type: Object || String,
+      type: [Object, String] as any,
       required: true
     }
   },
   methods: {
     isMessageFromOthers (): Boolean {
+      
       return this.message.name && !this.message.belongsToThisClient && !this.message.alert
     },
     formatDate (dateString: string): string {

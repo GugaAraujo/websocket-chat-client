@@ -16,7 +16,7 @@ The [other repository](https://github.com/GugaAraujo/websocket-chat-project) wil
 * Migrate to Nuxt 3 ◻️
 * Create Chat, Messages and Menu components ✅
 * Create User, allMessages and Scoreboard store in Vuex ✅
-* Create User and Message Interfaces ◻️
+* Create User and Message Interfaces ✅
 * Implement tests with Jest ◻️
 
 ## Build Setup

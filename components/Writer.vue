@@ -14,12 +14,13 @@
 import { defineComponent } from '@vue/composition-api'
 import { mapState, mapMutations } from 'vuex'
 import { Mutations } from '~/store/allMessages/types'
+import IMessage from '@/interfaces/IMessage'
 
 export default defineComponent({
     name: 'Writer',
     data() {
         return {
-            textToSend: null
+            textToSend: ''
         }
     },
     computed: mapState(['user']),
@@ -29,17 +30,20 @@ export default defineComponent({
         }),
         onClickSendText(): void {
 
-            const message = {
+            const message: IMessage = {
                 time: new Date(),
-                name: this.user.name,
-                avatar: this.user.avatar,
+                name: this.user.name as string,
+                avatar: this.user.avatar as string,
                 message: this.textToSend,
-                color: this.user.color,
+                color: this.user.color as string,
                 belongsToThisClient: false
             }
 
-            message.belongsToThisClient = true
-        
+            this.sendToSocket(message)
+            this.renderMessage(message)
+            this.eraseText()
+        },
+        sendToSocket(message: IMessage): void {
             this.$store.dispatch(
                 '$nuxtSocket/emit',
                 {
@@ -48,16 +52,16 @@ export default defineComponent({
                     msg: message
                 }
             )
-
+        },
+        renderMessage(message: IMessage): void {
+            message.belongsToThisClient = true
             this.pushMessage(message)
-
-            this.eraseText()
         },
         eraseText(): void {
             const input = this.$refs.inputTextToSend as HTMLInputElement
             input.value = ''
             input.focus()
-            this.textToSend = null
+            this.textToSend = ''
         },
         hasNoMessageToSend(): Boolean {
             return this.textToSend === null || this.textToSend === ''
