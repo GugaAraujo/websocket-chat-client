@@ -1,18 +1,24 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'websocket-chat-client',
+    title: 'Websocket Chat Project',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'pt-BR'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'og-type', property: 'og:type', content: 'website' },
+      { hid: 'description', name: 'description', content: 'Chat with Node, Nest, Vue, Nuxt, TypeScript, Tailwind and Websocket' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'og-title', property: 'og:title', content: 'Websocket Chat Project' },
+      { hid: 'og-desc', property: 'og:description', content: 'Chat with Node, Nest, Vue, Nuxt, TypeScript, Tailwind and Websocket' },
+      { hid: 'og:image', property: 'og:image', content: `https://www.guga-araujo.dev.br/img/websocket-chat-meta.png` },
+      { hid: 'og-url', property: 'og:url', content: 'https://websocket-chat-project.vercel.app/' },
+      { hid: 't-type', name: 'twitter:card', content: 'summary_large_image' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://www.guga-araujo.dev.br/img/favicon.ico' }
     ]
   },
 

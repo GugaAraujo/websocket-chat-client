@@ -1,11 +1,11 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <div class="flex flex-col justify-center mx-auto h-screen">
         <Socket />
         <NavBar />
-        <ToolBar />
-        <Chat class="flex-grow" />
-        <WhoIsTyping />
-        <Writer />
+        <ToolBar class="max-w-screen-2xl" />
+        <Chat class="max-w-screen-2xl flex-grow" />
+        <WhoIsTyping class="max-w-screen-2xl" />
+        <Writer class="max-w-screen-2xl" />
         <Footer />
     </div>
 </template>
