@@ -4,6 +4,7 @@
         <NavBar />
         <ToolBar />
         <Chat class="flex-grow" />
+        <WhoIsTyping />
         <Writer />
         <Footer />
     </div>
@@ -18,17 +19,19 @@ import Writer from '@/components/Writer.vue'
 import ToolBar from '~/components/ToolBar.vue'
 import Footer from '~/components/Footer.vue'
 import Socket from '~/components/Socket.vue'
+import WhoIsTyping from '~/components/WhoIsTyping.vue'
 
 export default defineComponent({
     name: 'Home',
     components: {
-        Chat,
-        Writer,
-        NavBar,
-        ToolBar,
-        Footer,
-        Socket
-    },
+    Chat,
+    Writer,
+    NavBar,
+    ToolBar,
+    Footer,
+    Socket,
+    WhoIsTyping
+},
     computed: mapState(['user']),
     mounted() {
         this.enterToChatRoom()

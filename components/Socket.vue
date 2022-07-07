@@ -1,9 +1,15 @@
+<template>
+</template>
+
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import type { NuxtSocket } from 'nuxt-socket-io'
 import { mapState, mapMutations } from 'vuex'
+import IMessage from '~/interfaces/IMessage'
 import { Mutations } from '~/store/allMessages/types'
-import { ScoreboardMutations } from '~/store/scoreboard/types'
+import { Scoreboard, ScoreboardMutations } from '~/store/scoreboard/types'
+import { User } from '~/store/user/types'
+import { WhoIsTyping, WhoIsTypingMutation } from '~/store/whoIsTyping/types'
 
 export default defineComponent({
     name: 'Socket',
@@ -21,29 +27,36 @@ export default defineComponent({
             persist: 'socketInstance',
         })
 
-        this.socket.on('entering', (welcomeMessage: any) => {
+        this.socket.on('entering', (welcomeMessage: string) => {
             this.pushMessage(welcomeMessage)
         })
-        this.socket.on('scoreboard', (scoreboard: any) => {
+        this.socket.on('scoreboard', (scoreboard: Scoreboard) => {
             this.setScoreboard(scoreboard)
         })
-        this.socket.on('alert_newUser', (newUser: any) => {
+        this.socket.on('typingAlert', (whoIsTyping: WhoIsTyping) => {
+            this.setWhoIsTyping(whoIsTyping)
+            setTimeout(() => {
+                whoIsTyping.name = null
+                this.setWhoIsTyping(whoIsTyping)
+            }, 1500);
+        })
+        this.socket.on('alert_newUser', (newUser: User) => {
             newUser.alert = 'newUser'
             this.pushMessage(newUser)
         })
-        this.socket.on('outgoingUser', (outgoingUser: any) => {
+        this.socket.on('outgoingUser', (outgoingUser: User) => {
             outgoingUser.alert = 'outgoingUser'
             this.pushMessage(outgoingUser)
         })
-        this.socket.on('historyRemovalAlert', (historyRemovalAlert: any) => {
+        this.socket.on('historyRemovalAlert', (historyRemovalAlert: string) => {
             this.pushMessage(historyRemovalAlert)
         })
-        this.socket.on('PreviousMessages', (messages: Array<any>) => {
+        this.socket.on('PreviousMessages', (messages: Array<IMessage>) => {
             messages.forEach((message) => {
                 this.pushMessage(message)
             })
         })
-        this.socket.on('receivedMessage', (message: any) => {
+        this.socket.on('receivedMessage', (message: IMessage) => {
             this.pushMessage(message)
         })
     },
@@ -54,21 +67,9 @@ export default defineComponent({
         ...mapMutations('scoreboard', {
             setScoreboard: ScoreboardMutations.SET_SCOREBOARD
         }),
-        sendText(text: string): void {
-            if (this.socket) {
-                const message = {
-                    time: new Date(),
-                    name: this.user.name,
-                    avatar: this.user.avatar,
-                    message: text,
-                    color: this.user.color,
-                    belongsToThisClient: false
-                }
-                this.socket.emit('sendMessage', message)
-                message.belongsToThisClient = true
-                this.pushMessage(message)
-            }
-        },
+        ...mapMutations('whoIsTyping', {
+            setWhoIsTyping: WhoIsTypingMutation.SET_WHO_IS_TYPING
+        }),
     }
 })
 </script>

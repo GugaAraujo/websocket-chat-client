@@ -1,7 +1,8 @@
 import { MutationTree } from 'vuex/types/index'
+import IMessage from '~/interfaces/IMessage';
 
 export interface AllMessages {
-    list: Array<any>;
+  list: Array<IMessage>;
 }
 
 export enum Mutations {
@@ -11,5 +12,5 @@ export enum Mutations {
 export type RootState = ReturnType<() => AllMessages>;
 
 export interface MutationsInterface extends MutationTree<RootState> {
-  [Mutations.PUSH_NEW_MESSAGE](state: AllMessages, parameter: AllMessages): void;
+  [Mutations.PUSH_NEW_MESSAGE](state: AllMessages, parameter: IMessage): void;
 }
