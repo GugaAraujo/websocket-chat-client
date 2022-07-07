@@ -9,6 +9,7 @@ import IMessage from '~/interfaces/IMessage'
 import { Mutations } from '~/store/allMessages/types'
 import { Scoreboard, ScoreboardMutations } from '~/store/scoreboard/types'
 import { User } from '~/store/user/types'
+import { WhoIsTyping, WhoIsTypingMutation } from '~/store/whoIsTyping/types'
 
 export default defineComponent({
     name: 'Socket',
@@ -31,6 +32,13 @@ export default defineComponent({
         })
         this.socket.on('scoreboard', (scoreboard: Scoreboard) => {
             this.setScoreboard(scoreboard)
+        })
+        this.socket.on('typingAlert', (whoIsTyping: WhoIsTyping) => {
+            this.setWhoIsTyping(whoIsTyping)
+            setTimeout(() => {
+                whoIsTyping.name = null
+                this.setWhoIsTyping(whoIsTyping)
+            }, 1500);
         })
         this.socket.on('alert_newUser', (newUser: User) => {
             newUser.alert = 'newUser'
@@ -58,6 +66,9 @@ export default defineComponent({
         }),
         ...mapMutations('scoreboard', {
             setScoreboard: ScoreboardMutations.SET_SCOREBOARD
+        }),
+        ...mapMutations('whoIsTyping', {
+            setWhoIsTyping: WhoIsTypingMutation.SET_WHO_IS_TYPING
         }),
     }
 })

@@ -2,7 +2,7 @@
     <div
         class="mt-4 p-1 bg-white bg-opacity-50 backdrop-blur-xl rounded-xl drop-shadow-lg shadow-2xl m-auto w-4/5 lg:w-3/6 h-8 flex justify-around text-center text-white font-medium">
         <div class="inline">
-            <span class="mr-3 lg:mr-20" :style="`color: ${user.color}`">
+            <span class="mr-3 lg:mr-20">
                 {{ user.name }}
             </span>
             <span>

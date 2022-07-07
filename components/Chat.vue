@@ -1,6 +1,6 @@
 <template>
   <div ref="chatbox"
-    class="chatbox m-auto my-4 p-4 shadow-lg w-4/5 bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg overflow-y-scroll">
+    class="chatbox m-auto mt-4 p-4 shadow-lg w-4/5 bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg overflow-y-scroll">
     <div v-if="allMessages.list.length">
       <div v-for="(message, index) in allMessages.list" :key="index">
         <Message :message="message" />
