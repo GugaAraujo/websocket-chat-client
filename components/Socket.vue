@@ -8,7 +8,7 @@ import { mapState, mapMutations } from 'vuex'
 import IMessage from '~/interfaces/IMessage'
 import { Mutations } from '~/store/allMessages/types'
 import { Scoreboard, ScoreboardMutations } from '~/store/scoreboard/types'
-import { User } from '~/store/user/types'
+import { User, UserMutations } from '~/store/user/types'
 import { WhoIsTyping, WhoIsTypingMutation } from '~/store/whoIsTyping/types'
 
 export default defineComponent({
@@ -32,6 +32,9 @@ export default defineComponent({
         })
         this.socket.on('scoreboard', (scoreboard: Scoreboard) => {
             this.setScoreboard(scoreboard)
+        })
+        this.socket.on('registeredWithID', (id: string) => {
+            this.setID(id)
         })
         this.socket.on('typingAlert', (whoIsTyping: WhoIsTyping) => {
             this.setWhoIsTyping(whoIsTyping)
@@ -65,10 +68,13 @@ export default defineComponent({
             pushMessage: Mutations.PUSH_NEW_MESSAGE
         }),
         ...mapMutations('scoreboard', {
-            setScoreboard: ScoreboardMutations.SET_SCOREBOARD
+            setScoreboard: ScoreboardMutations.SET_SCOREBOARD,
         }),
         ...mapMutations('whoIsTyping', {
             setWhoIsTyping: WhoIsTypingMutation.SET_WHO_IS_TYPING
+        }),
+        ...mapMutations('user', {
+            setID: UserMutations.SET_ID
         }),
     }
 })

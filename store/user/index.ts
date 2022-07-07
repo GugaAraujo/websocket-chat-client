@@ -1,4 +1,4 @@
-import { User, Mutations, MutationsInterface } from './types'
+import { User, UserMutations, MutationsInterface } from './types'
 
 export const state = (): User => ({
   name: null,
@@ -7,7 +7,7 @@ export const state = (): User => ({
 })
 
 export const mutations: MutationsInterface = {
-  [Mutations.SET_USER] (state: User, newUser: User) {
+  [UserMutations.SET_USER] (state: User, newUser: User) {
     state.name = newUser.name
     state.color = newUser.color
 
@@ -20,7 +20,10 @@ export const mutations: MutationsInterface = {
       : state.avatar = `https://robohash.org/${newUser.name}.png`
     // Emmit ao Socket passando User no payload
   },
-  [Mutations.CHANGE_COLOR] (state: User, newColor: string) {
+  [UserMutations.CHANGE_COLOR] (state: User, newColor: string) {
     state.color = newColor
+  },
+  [UserMutations.SET_ID](state: User, id: string) {
+    state.id = id
   }
 }
