@@ -9,16 +9,8 @@
 <script lang="ts">
 
 import { defineComponent } from '@vue/composition-api'
-import { mapState } from 'vuex'
 
 export default defineComponent({
-  name: 'Home',
-  components: {
-  },
-  computed: mapState(['user']),
-  mounted () {
-  },
-  methods: {
-  }
+  name: 'NavBar',
 })
 </script>

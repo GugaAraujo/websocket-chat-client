@@ -2,7 +2,7 @@ import { User, Mutations, MutationsInterface } from './types'
 
 export const state = (): User => ({
   name: null,
-  color: '#5183F5',
+  color: '#000',
   avatar: null
 })
 

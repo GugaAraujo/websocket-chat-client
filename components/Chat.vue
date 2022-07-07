@@ -1,8 +1,8 @@
 <template>
   <div ref="chatbox"
     class="chatbox m-auto my-4 p-4 shadow-lg w-4/5 bg-white bg-opacity-20 backdrop-blur-xl rounded drop-shadow-lg overflow-y-scroll">
-    <div v-if="allMessages.length">
-      <div v-for="message in allMessages" :key="message">
+    <div v-if="allMessages.list.length">
+      <div v-for="message in allMessages.list" :key="message">
         <Message :message="message" />
       </div>
     </div>
@@ -16,19 +16,15 @@
 import { defineComponent } from '@vue/composition-api'
 import Message from '@/components/Message.vue'
 import DotsLoader from './DotsLoader.vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'Chat',
+  computed: mapState(['allMessages']),
   components: {
     Message,
     DotsLoader
 },
-  props: {
-    allMessages: {
-      type: Array,
-      required: true
-    }
-  },
   watch: {
     allMessages: {
       async handler() {
