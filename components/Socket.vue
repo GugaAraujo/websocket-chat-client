@@ -26,7 +26,7 @@ export default defineComponent({
             reconnection: false,
             persist: 'socketInstance',
         })
-
+        
         this.socket.on('entering', (welcomeMessage: string) => {
             this.pushMessage(welcomeMessage)
         })

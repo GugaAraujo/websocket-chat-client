@@ -1,6 +1,5 @@
 <template>
-
-    <div class="w-4/5 h-6 m-auto text-white">
+    <div class="h-6 text-white">
         <div v-if="whoIsTyping.name" class="flex row">
             <span>
                 {{ whoIsTyping.name }} está digitando
