@@ -10,6 +10,7 @@ import { Mutations } from '~/store/allMessages/types'
 import { Scoreboard, ScoreboardMutations } from '~/store/scoreboard/types'
 import { User, UserMutations } from '~/store/user/types'
 import { WhoIsTyping, WhoIsTypingMutation } from '~/store/whoIsTyping/types'
+import { AllUsers, AllUserMutations } from '~/store/allUsers/types'
 
 export default defineComponent({
     name: 'Socket',
@@ -35,6 +36,9 @@ export default defineComponent({
         })
         this.socket.on('registeredWithID', (id: string) => {
             this.setID(id)
+        })
+        this.socket.on('sendAllUsers', (allUsers: AllUsers) => {
+            this.updateList(this.filterThisClientId(allUsers))
         })
         this.socket.on('typingAlert', (whoIsTyping: WhoIsTyping) => {
             this.setWhoIsTyping(whoIsTyping)
@@ -76,6 +80,12 @@ export default defineComponent({
         ...mapMutations('user', {
             setID: UserMutations.SET_ID
         }),
+        ...mapMutations('allUsers', {
+            updateList: AllUserMutations.UPDATE_LIST
+        }),
+        filterThisClientId(allUsers: any): AllUsers {
+            return allUsers.filter((user: User) => user.id !== this.user.id)
+        }
     }
 })
 </script>
