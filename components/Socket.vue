@@ -64,6 +64,7 @@ export default defineComponent({
             })
         })
         this.socket.on('receivedMessage', (message: IMessage) => {
+            message.time = new Date()
             this.pushMessage(message)
         })
     },
